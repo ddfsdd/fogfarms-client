@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
-import { ModuleContext } from '../../contexts/ModuleContext';
+import React, { useContext, useState } from 'react';
+import { ModuleDataContext } from '../../contexts/ModuleDataContext';
 
-const Module = ({ module }) => {
-	const { dispatch } = useContext(ModuleContext);
+const Module = ({ name }) => {
 	return (
-		<li>
-			<div className="moduleName">{module.name}</div>
+		// fix here
+		<li onClick={() => {console.log("Who are U : ", name)}}>
+			<div className="moduleName">
+				{name}
+			</div>
 		</li>
 	);
 };

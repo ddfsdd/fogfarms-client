@@ -1,37 +1,32 @@
 import { Button, FormControl, Form, Container, Image } from 'react-bootstrap';
 import React, { useState } from 'react';
-import axios from 'axios';
-import '../css_sheet/login.css';
-import '../css_sheet/global_theme.css';
-import Logo from '../image/Dashboard_Logo.png';
-import app from './axiosConfig';
+import '../../css_sheet/login.css';
+import '../../css_sheet/global_theme.css';
+import Logo from '../../image/Dashboard_Logo.png';
+import app from '../functions/axiosConfig';
+import { useHistory } from 'react-router-dom';
+
 function Login(props) {
-	const [email, setEmail] = useState(''); //use useState to store variable
-	//store in variable email, change the stored value with setEmail
+	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const serverName = 'https://salty-oasis-24147.herokuapp.com';
-	//const serverName = 'locahost:9090';
+	const url = 'https://salty-oasis-24147.herokuapp.com';
+	let history = useHistory();
 	function validateForm() {
 		return email.length > 0 && password.length > 0;
 	}
 	function handleSubmit(event) {
 		event.preventDefault();
-		console.log(email + ' ' + password);
-		// console.log(serverName.concat('/auth/sign_in'));
 		const data = {
 			username: email,
 			password: password,
 		};
-		app.post(serverName + '/auth/sign_in', data).then((res) => {
-			console.log(res);
-		
+		app.post(url + '/auth/sign_in', data).then((res) => {
+			if (res.status === 200) {
+				history.push('/management_select');
+			} else {
+				console.log('Auth: login fail');
+			}
 		});
-	}
-	function Submitplz(event){
-		app.get(serverName+'/modulegroup_management').then((res)=>
-		{
-			console.log(res.data);
-		})
 	}
 	return (
 		<Container fluid className="Login">
@@ -60,7 +55,6 @@ function Login(props) {
 					LogIn
 				</Button>
 			</form>
-			<button onClick={Submitplz}>haha</button>
 		</Container>
 	);
 }

@@ -4,7 +4,7 @@ import ModuleDataDetail from './ModuleDataDetail';
 
 const ModuleDataGrowUnit = () => {
 	const { datas } = useContext(ModuleDataContext);
-	return datas.length ? (
+	return (
 		<div className="grow-list">
 			<ul>
 				{datas.map((data) => {
@@ -12,9 +12,7 @@ const ModuleDataGrowUnit = () => {
 				})}
 			</ul>
 		</div>
-	) : (
-		<div className="empty">there's no way right.</div>
-	);
+	)
 };
 
 export default ModuleDataGrowUnit;

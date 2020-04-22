@@ -1,14 +1,17 @@
 import React, { useContext } from 'react';
-import { ControlledContext } from '../../contexts/ControlledContext';
 import ControllerDetail from './ControllerDetail';
+import { ModuleDataContext } from '../../contexts/ModuleDataContext';
+import { controllers } from 'chart.js';
 
 const ModuleControllerList = () => {
-	const { controllers } = useContext(ControlledContext);
-	return controllers.length ? (
+	const { datas } = useContext(ModuleDataContext);
+	const module1 = datas[0];
+	console.log("equipments Check : ", module1)
+	return datas.length ? (
 		<div className="controller-list">
 			<ul>
-				{controllers.map((controller) => {
-					return <ControllerDetail controller={controller} status={controller.status} key={controller.id} />;
+				{datas.map((data) => {
+					return <ControllerDetail data={data} status={data.status} key={data.id} />;
 				})}
 			</ul>
 		</div>
