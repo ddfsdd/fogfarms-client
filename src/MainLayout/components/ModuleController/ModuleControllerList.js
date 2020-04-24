@@ -1,23 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import ControllerDetail from './ControllerDetail';
 import { ModuleDataContext } from '../../contexts/ModuleDataContext';
-import { controllers } from 'chart.js';
 
 const ModuleControllerList = () => {
-	const { datas } = useContext(ModuleDataContext);
-	const module1 = datas[0];
-	console.log("equipments Check : ", module1)
-	return datas.length ? (
-		<div className="controller-list">
-			<ul>
-				{datas.map((data) => {
-					return <ControllerDetail data={data} status={data.status} key={data.id} />;
-				})}
-			</ul>
-		</div>
-	) : (
-		<div className="empty">there's no way right.</div>
-	);
+	const { controllers } = useContext(ModuleDataContext);
+	const fogger = controllers.fogger
+	const led = controllers.led
+	const mixer = controllers.mixer
+	const solenoid_valve = controllers.solenoid_valve
+	const [test, setTest] = useState([false,false])
+	console.log("Controllers : ", test)
+	// setTest([true,false])
+	// console.log("Controllers : ", test)
+	
+	return <div className="controller-list">
+				<ul>
+					hi
+					{/* {console.log("Testing : ",allCon?.fogger)} */}
+				</ul>
+			</div>
 };
 
 export default ModuleControllerList;
+
+{/* {allCon?.map((con) => {
+						console.log(con)
+						return <ControllerDetail con={con} />;
+					})} */}

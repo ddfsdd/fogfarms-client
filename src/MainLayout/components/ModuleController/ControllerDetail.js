@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ModuleDataContext } from '../../contexts/ModuleDataContext';
 import { Form } from 'react-bootstrap';
 
-const ControllerDetail = ({ datas }) => {
+const ControllerDetail = ({ con }) => {
 	return (
 		<li>
 			<Form>

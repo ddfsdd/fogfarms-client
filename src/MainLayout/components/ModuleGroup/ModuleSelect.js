@@ -4,10 +4,8 @@ import Module from './Module';
 import ModuleSelectHeader from './ModuleSelectHeader';
 
 const ModuleSelect = () => {
-	const { datas } = useContext(ModuleDataContext);
-	const [currentModule, setCurrentModule] = useState('allmodule');
-	console.log("Say my nameee : ", currentModule)
-	console.log('Modules Group datas: ', datas[0].controller);  //here
+	const { datas, currentModule, setCurrentModule } = useContext(ModuleDataContext);
+	// console.log('Modules Group datas: ', datas[0]?.controller); but whyyyyyyy
 	return <div className="moduleSelect">
 				<ModuleSelectHeader />
 				<div className='module-list'>
@@ -17,10 +15,9 @@ const ModuleSelect = () => {
 								All Modules
 							</div>
 						</li>
-						{/* fix here */}
 						{datas.map((data) => {
-							console.log("Module Select :",data.controller)
-							return <Module name={data.name}/>;
+							return <li onClick={() => {setCurrentModule(data.name)}}>
+									<Module name={data.name}/></li>
 						})}
 					</ul>
 				</div>
