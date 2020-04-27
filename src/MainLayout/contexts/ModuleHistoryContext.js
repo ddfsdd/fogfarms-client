@@ -24,7 +24,7 @@ const ModuleHistoryContextProvider = (props) => {
     app.post("/dashboard/history", info).then((res) => {
       const receivedData = res.data;
       const modulesJson = Object.keys(receivedData).map((key, i) => {
-        return { ...receivedData[key], name: key };
+        return { data: receivedData[key], name: key };
       });
       console.log("MODULEJSON :", modulesJson);
       setHistoryDatas(modulesJson);
