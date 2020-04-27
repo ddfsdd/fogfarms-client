@@ -30,14 +30,34 @@ const ModuleDataGraph = () => {
 
 	return (
 		<div className="nutrientBox">
-			<div className="nutrientTitle">
+			{
+				 sensorModule ? (
+			
+						sensorModule.tds.map((data, index) => {
+						  return(
+							  <div className="nutrientTitle">
+								  <p>Nutrient{index+1}</p>
+								  <div>
+										<Progress type="circle" percent={sensorModule.tds} format={percent => `TDS ${percent}%`} />
+										<Progress type="circle" percent={sensorModule.ph*100/14} format={percent => `PH ${percent*14/100}`} />
+										<Progress type="circle" percent={sensorModule.solution_temp} format={percent => `Solution temparature ${percent}`} />
+								</div>
+							</div>
+						  )
+						})
+					 
+				  ) : (
+					<p>No Nutrient has been selected at the moment</p>)
+			   
+			}
+			{/* <div className="nutrientTitle">
 				<p>Nutrient 1</p>
 			</div>
 			<div>
 				<Progress type="circle" percent={75} format={percent => `TDS ${percent}%`} />
 				<Progress type="circle" percent={75} format={percent => `${percent} Days`} />
 				<Progress type="circle" percent={100} format={() => `Days`} />
-			</div>
+			</div> */}
 		</div>
 	);
 };
